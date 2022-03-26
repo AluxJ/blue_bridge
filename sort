@@ -1,0 +1,481 @@
+//bubblesort
+#pragma once
+#include<iostream>
+using namespace std;
+class MergeClass
+{
+public:
+ void Merge(int *A,int low,int mid,int high,int *B)
+ {
+	 int i, j, k;
+	 i = low; j = mid + 1; k = low;
+	 for (k; k < high; k++)
+	 {
+		
+		 B[k] = A[k];
+	 } 
+	 for (i; i <= mid && j < high; k++)
+	 {
+		 
+		 if (B[i] <= B[j])
+		 {
+			 
+			 A[k] = B[i];
+		 }
+		 else
+		 {
+			 A[k] = B[j];
+		 }
+	 }
+	 while (i<=mid)
+	 {
+		
+		 A[k++] = B[i++];
+	 }
+	 while (j<high)
+	 { 
+		 A[k++] = B[j++];
+	 }
+ }
+
+ void MergeSort(int* arr,int *brr, int low, int high)
+ {
+	 if (low < high)
+	 {
+		 int mid = (high + low) / 2;
+		
+		 MergeSort(arr, brr, low, mid+1);
+
+		 MergeSort(arr, brr, mid+1, high);
+		
+		 Merge(arr, low, mid, high, brr);
+	 }
+	 for (size_t i = 0; i <high ; i++)
+	 {
+		 cout << arr[i] << " ";
+	 }
+	 cout << endl;
+
+ }
+
+};
+
+
+//fib
+#pragma once
+#include<iostream>
+//生成斐波那契数列
+// 某一项的值是前两项的和
+//递归训练
+using namespace std;
+class fib
+{
+public:
+	int n;//表示第几个数
+public:
+	int fibnum(int n)
+	{
+		if (n == 1 || n == 2)
+		{
+			return 1;
+		}
+		else
+			return ( fibnum(n - 1) + fibnum(n - 2));
+	}
+};
+
+//gcc
+#pragma once
+#include<iostream>
+using namespace std;
+class num
+{
+public:
+	int gcnum(int m, int n)
+	{
+		if (n == 0)
+			return m;
+		if ( m%n == 0)
+			return n;
+		return gcnum(n, m % n);
+	}
+
+
+
+};
+
+
+//hano
+#pragma once
+#include<iostream>
+
+using namespace std;
+class hano
+{
+public:
+	void hanochange(int n, string &source, string& help, string& to)
+	{
+		if (n == 1)
+		{
+			cout << n << "from"<< source <<" - TO " << to << endl;
+			//return;
+		}
+
+		else {
+			hanochange(n - 1, source, to, help);
+			cout << n << " from " << source << "  - TO  " << to << endl;
+			hanochange(n - 1, help, source, to);
+			//err code hanochange(n - 1, help, to, source);
+		}
+	}
+};
+
+//Mergesort
+#pragma once
+#include<iostream>
+using namespace std;
+class MergeClass
+{
+public:
+ void Merge(int *A,int low,int mid,int high,int *B)
+ {
+	 int i, j, k;
+	 i = low; j = mid + 1; k = low;
+	 for (k; k < high; k++)
+	 {
+		
+		 B[k] = A[k];
+	 } 
+	 for (i; i <= mid && j < high; k++)
+	 {
+		 
+		 if (B[i] <= B[j])
+		 {
+			 
+			 A[k] = B[i];
+		 }
+		 else
+		 {
+			 A[k] = B[j];
+		 }
+	 }
+	 while (i<=mid)
+	 {
+		
+		 A[k++] = B[i++];
+	 }
+	 while (j<high)
+	 { 
+		 A[k++] = B[j++];
+	 }
+ }
+
+ void MergeSort(int* arr,int *brr, int low, int high)
+ {
+	 if (low < high)
+	 {
+		 int mid = (high + low) / 2;
+		
+		 MergeSort(arr, brr, low, mid+1);
+
+		 MergeSort(arr, brr, mid+1, high);
+		
+		 Merge(arr, low, mid, high, brr);
+	 }
+	 for (size_t i = 0; i <high ; i++)
+	 {
+		 cout << arr[i] << " ";
+	 }
+	 cout << endl;
+
+ }
+
+};
+
+
+//numpower
+#pragma once
+#include<iostream>
+using namespace std;
+class Power
+{
+public:
+	int PowerNum(int & num,int power)
+	{
+		
+		int flag = 1;
+		int res=num;
+		if (power == 0)
+		{
+			res = 1;
+			return res;
+		}
+		while ((flag << 1) <= power)
+		{
+			res = res * res;
+			flag <<= 1;
+		}
+		return res * PowerNum(num, power - flag);
+
+	}
+};
+
+//quicksort
+#pragma once
+#include<iostream>
+using namespace std;
+class QuickSort
+{
+public:
+	void swap(int*a,int sc,int bigger)
+	{
+		int tmp = 0;
+		tmp = a[bigger];
+		a[bigger] = a[sc];
+		a[sc] = tmp;
+	}
+	void SelfQuickSort(int *a,int l,int r)
+	{
+		int begin = l;
+		int end = r;
+		if (begin <= end)
+		{
+			int q = partation(a, begin,r);
+			SelfQuickSort(a, begin, q - 1);
+			SelfQuickSort(a, q + 1, r);
+
+		}
+		
+		
+
+	}
+	int partation(int* a, int l, int r)
+	{
+		
+		int begin = l + 1;
+
+		int total = a[l];
+
+		int end = r ;
+
+		while (begin <= end)
+		{
+			if (a[begin] <= total)
+			{
+				begin++;
+			}
+			else
+			{
+				swap(a, begin, end);
+				end--;
+			}
+		}
+		swap(a,l,end);
+		return end;
+	}
+	int partation2(int *a,int p,int r)
+	{
+		int povit = a[p];
+		int left = p + 1;
+		int right = r;
+
+		while (left<=right)
+		{
+			while (left <= right && a[left] <= povit) left++;
+			while (left <= right && a[right] > povit) right--;
+			swap(a,left,right);
+		}
+		swap(a,p,right);
+		return right;
+	}
+
+	int  MutilSort(int *a,int p,int r,int k)
+	{
+		int q = partation2(a,p,r);
+		int qK = q - p + 1;// 代表主元是第几个元素
+		if (k == qK) return a[q];
+		else if(qK>k)
+		{
+			return MutilSort(a, p, q - 1, k);
+		}
+		else
+		{
+			return MutilSort(a,q+1,r,k-qK);
+		}
+	}
+};
+
+
+//shellSort
+#pragma once
+#include<iostream>
+#include<array>
+using namespace std;
+
+class Shell
+{
+public:
+	void ShellSort(int* arr,int length)
+	{
+		int step=0;
+		int count = 1;
+		int i;
+		for (step = length / 2; step > 0; step /= 2)//已经设置好步长 代表着分组开始
+		{
+			cout << "step is" << step << endl;
+			//开始按照步长分组
+			for ( i = step; i < length; i++)
+			{
+				//任务一：定位中间的那个数和偏移量为步长的最左边的数
+				int target = arr[i];
+				
+				//这个地方用的是下标的偏移确定位置 因为i和j才是下标，step是偏移量
+				//所以j=i-step 逻辑上说得通
+				
+				//接下来会有一个循环 来实现比大小和交换功能
+				//while (j > -1 && target < arr[j])
+				//{
+					
+
+					//arr[j + step] = arr[j];
+					//j -= step;
+				//}
+				//arr[j + step] = target;
+				for (int j = i - step;j>-1;j-=step)
+				{
+					//cout << j << "       111" << endl;
+					if(arr[j+step]<arr[j])
+					{
+					//cout << arr[j + step] << "     " << arr[j] << endl;
+					int tmp = 0;
+					tmp = arr[j+step];
+					arr[j+step] = arr[j];
+					arr[j] = tmp; 
+					}
+				}
+
+			}
+		
+			cout << endl;
+			cout << "No" << count << "is" << endl;
+			count++;
+			for (int i = 0; i < 11; i++)
+		{
+			cout <<  arr[i] << "  ";
+			
+			
+		}
+		
+		}
+		
+	}
+};
+
+//selectsort
+#pragma once
+#include<iostream>
+using namespace std;
+class Select
+{
+public:
+	void Selectsort(int *a,int length)
+	{
+		int i=0, j=0, tmp=0;
+		for ( i = 1; i < length; i++)
+		{
+			if (a[i] < a[i - 1])
+			{
+				 tmp = a[i];
+			
+				for ( j = i-1; j>=0&&a[j]>tmp; j--)
+				{          
+					a[j + 1] = a[j];
+				}
+				a[j+1] =tmp ;
+			}	
+		
+			}
+		
+		for (size_t i = 0; i < length; i++)
+		{
+			cout << a[i] << " ";
+		}
+		cout << endl;
+	}
+};
+
+//whiteuoladder
+#pragma once
+#include<iostream>
+class upladder
+{
+public:
+	
+	int up(int n)
+	{	
+	   
+		if (n == 0) return 0;
+		if (n == 1) return 1;
+		if (n == 2) return 2;
+		if (n == 3)return 4;
+		return up(n - 1) + up(n - 2) + up(n - 3);
+	}
+
+
+};
+
+//二分查找
+#pragma once
+#include<iostream>
+#include<string>
+//#include<array>
+using namespace std;
+class StringFind
+{
+public:
+	int erfen(string a[], string target,int length)
+	{   // 第一步 锁定头和尾部 还有中间
+		int begin = 0;
+		
+		
+
+		int end = length-1;
+		cout << "end is "<<end << endl;
+		int mid = (begin + end) / 2;
+		int indexofmid = 0;
+		//第二步 开始扫描
+		while (begin < end)//只要不越界 就可以进行操作
+		{
+			 indexofmid = mid;
+
+			while (a[indexofmid]==" ")
+			{
+				cout << "可以进入index递增循环" << endl;
+				indexofmid++;
+				if (indexofmid<0 || indexofmid>length)
+					return -1;
+			}
+			if (a[indexofmid] > target)
+			{
+				end = mid - 1;
+				//end = end - mid;
+			}
+			else if (a[indexofmid] < target)
+			{
+				begin = mid + 1;
+				//begin = begin + mid;
+			}
+			else
+			{
+				return indexofmid;
+			}
+			mid = (begin + end) / 2;
+		}
+		return 9;
+		
+	}
+
+};
+
+
+
